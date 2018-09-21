@@ -1,0 +1,91 @@
+let ledpointX = 0
+let ledpointY = 0
+let randome = 0
+let okay = false
+let feedX = 0
+let feedY = 0
+let bright = 10
+input.onButtonPressed(Button.AB, () => {
+    if (ledpointY != 4) {
+        led.unplot(ledpointX, ledpointY)
+        led.plot(ledpointX, ledpointY + 1)
+        ledpointY = ledpointY + 1
+        spawn()
+        if (feedX == ledpointX && feedY == ledpointY) {
+            bright += 10
+            led.setBrightness(bright)
+            okay = false
+            if (bright > 230) {
+                basic.showIcon(IconNames.Heart)
+            }
+        }
+    }
+})
+function spawn() {
+    if (!okay) {
+        feedX = rand()
+        feedY = rand()
+        led.plot(feedX, feedY)
+        okay = true
+    }
+
+}
+
+function rand() {
+    randome = Math.random(4)
+    return randome
+}
+input.onButtonPressed(Button.A, () => {
+    if (ledpointX != 0) {
+        led.unplot(ledpointX, ledpointY)
+        led.plot(ledpointX - 1, ledpointY)
+        ledpointX = ledpointX - 1
+        spawn()
+
+        if (feedX == ledpointX && feedY == ledpointY) {
+            bright += 10
+            led.setBrightness(bright)
+            okay = false
+            if (bright > 230) {
+                basic.showIcon(IconNames.Heart)
+            }
+        }
+    }
+})
+input.onButtonPressed(Button.B, () => {
+    if (ledpointX != 4) {
+        led.unplot(ledpointX, ledpointY)
+        led.plot(ledpointX + 1, ledpointY)
+        ledpointX = ledpointX + 1
+        spawn()
+        if (feedX == ledpointX && feedY == ledpointY) {
+            bright += 10
+            led.setBrightness(bright)
+            okay = false
+            if (bright > 230) {
+                basic.showIcon(IconNames.Heart)
+            }
+        }
+    }
+})
+input.onGesture(Gesture.Shake, () => {
+    if (ledpointY != 0) {
+        led.unplot(ledpointX, ledpointY)
+        led.plot(ledpointX, ledpointY - 1)
+        ledpointY = ledpointY - 1
+        spawn()
+        if (feedX == ledpointX && feedY == ledpointY) {
+            bright += 10
+            led.setBrightness(bright)
+            okay = false
+            if (bright > 230) {
+                basic.showIcon(IconNames.Heart)
+            }
+        }
+    }
+})
+led.setBrightness(10)
+input.onShake
+led.plot(0, 0)
+ledpointX = 0
+ledpointY = 0
