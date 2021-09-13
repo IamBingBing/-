@@ -32,8 +32,8 @@ function spawn() {
 }
 
 function rand() {
-    randome = Math.random(4)
-    return randome
+    randome = Math.random()
+    return Math.floor(randome*4)
 }
 input.onButtonPressed(Button.A, () => {
     if (ledpointX != 0) {
